@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.felipealves.cursomc.Exception.ObjectNotFoundException;
 import com.felipealves.cursomc.domain.Categoria;
 import com.felipealves.cursomc.repositores.CategoriaRepository;
 
@@ -17,6 +18,8 @@ public class CategoriaService {
 	
 	public Categoria buscar(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontraddo! id: " + id + ", tipo: " + Categoria.class.getName()
+				));
 	}
 }
