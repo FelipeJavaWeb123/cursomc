@@ -12,24 +12,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.felipealves.cursomc.domain.Enum.TipoCliente;
 
 @Entity
-public class Cliente  implements Serializable { /* Categoria correspondente a tabela */
+public class Cliente implements Serializable { /* Categoria correspondente a tabela */
 
 	private static final long serialVersionUID = 1L; /* Id começa com 1 */
 
 	@Id /* Identificador do PK */
-	@GeneratedValue(strategy = GenerationType.IDENTITY) /* Gerenciador do Primary Key */
+	@GeneratedValue(strategy=GenerationType.IDENTITY) /* Gerenciador do Primary Key */
 	private Integer id;
 	private String nome;
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	@JsonManagedReference /* A classe cliente faz vinculo com o enreço,o endpoint significa que pode trazer o endereço junto*/
 	@OneToMany(mappedBy="cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
@@ -47,7 +48,6 @@ public class Cliente  implements Serializable { /* Categoria correspondente a ta
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = tipo.getCod();
-		this.enderecos = enderecos;
 	}
 
 	public void setId(Integer id) {
