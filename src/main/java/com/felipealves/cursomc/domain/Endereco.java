@@ -33,7 +33,7 @@ public class Endereco implements Serializable { /* Categoria correspondente a ta
 	@JoinColumn(name="cidade_id")
 	private Cidade cidade;
 	
-	private Endereco() {}
+	public Endereco() {}
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
 			Cliente cliente, Cidade cidade) {
