@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.felipealves.cursomc.DTO.CategoriaDTO;
 import com.felipealves.cursomc.Exception.ObjectNotFoundException;
 import com.felipealves.cursomc.domain.Categoria;
 import com.felipealves.cursomc.repositores.CategoriaRepository;
@@ -49,5 +50,9 @@ public class CategoriaService {
 	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderby, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction),orderby);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 }

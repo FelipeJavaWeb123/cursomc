@@ -2,7 +2,10 @@ package com.felipealves.cursomc.DTO;
 
 import java.io.Serializable;
 
-import org.springframework.web.bind.annotation.RequestParam;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.felipealves.cursomc.domain.Categoria;
 
@@ -10,6 +13,9 @@ public class CategoriaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	
+	@NotBlank(message="Preenchimento Obrigatório")
+	@Length(min=5, max=80, message="O campo deve conter entre 5 a 80 caracteres")
 	private String nome;
 	
 	public CategoriaDTO() {
