@@ -2,6 +2,8 @@ package com.felipealves.cursomc.DTO;
 
 import java.io.Serializable;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.felipealves.cursomc.domain.Categoria;
 
 public class CategoriaDTO implements Serializable{
@@ -13,7 +15,7 @@ public class CategoriaDTO implements Serializable{
 	public CategoriaDTO() {
 	}
 
-	public CategoriaDTO(Categoria obj) {
+	public CategoriaDTO( Categoria obj) {
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 	}
