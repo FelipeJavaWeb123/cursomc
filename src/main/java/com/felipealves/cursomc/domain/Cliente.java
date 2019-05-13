@@ -51,7 +51,7 @@ public class Cliente implements Serializable { /* Categoria correspondente a tab
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo.getCod();
+		this.tipo = (tipo == null) ? null : tipo.getCod();
 	}
 
 	public void setId(Integer id) {
@@ -142,6 +142,4 @@ public class Cliente implements Serializable { /* Categoria correspondente a tab
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-	
-	
 }
