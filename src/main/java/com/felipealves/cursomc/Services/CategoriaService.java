@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.felipealves.cursomc.DTO.CategoriaDTO;
 import com.felipealves.cursomc.Exception.ObjectNotFoundException;
 import com.felipealves.cursomc.domain.Categoria;
+import com.felipealves.cursomc.domain.Cliente;
 import com.felipealves.cursomc.repositores.CategoriaRepository;
 
 @Service   /* Camada responsavel por serviço*/
@@ -19,7 +20,6 @@ public class CategoriaService {
 
 	@Autowired    /* Instanciar o repositorio*/
 	private CategoriaRepository repo;
-	
 	
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
@@ -29,6 +29,8 @@ public class CategoriaService {
 	}
 	
 	public Categoria insert(Categoria obj) {
+		Categoria newObj = find(obj.getId());
+		updateDate(newObj, obj);
 		obj.setId(null);
 		return repo.save(obj);
 	}
@@ -54,5 +56,9 @@ public class CategoriaService {
 	
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
+	}
+	
+	private void updateDate(Categoria newObj , Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 }
